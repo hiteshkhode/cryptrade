@@ -3,9 +3,9 @@ import { SiEthereum } from 'react-icons/si';
 import { BsInfoCircle } from 'react-icons/bs';
 import { Loader } from './'
 
-// function connectWallet(){
-//     console.log('connecting wallet');
-// }
+import { useState, useContext } from 'react';
+
+import { TransactionContext } from '../context/TransactionContext';
 
 const Input = ( {placeholder, name, type, value, handlechange} ) => {
     return(<div>
@@ -22,6 +22,9 @@ const Input = ( {placeholder, name, type, value, handlechange} ) => {
 }
 
 const Welcome = () => {
+    const {marks, connectWallet, currentAccount} = useContext(TransactionContext);
+
+    console.log(marks);
     const handlesubmit = () => {
 
     }
@@ -29,6 +32,15 @@ const Welcome = () => {
         <div className='flex relative bg-gradient-to-r from-red-400 via-gray-300 to-blue-500 h-100'>
             <div className='font-bold w-100 h-20 px-20 py-20 mx-20 my-20'>
                 Solidity! Blockchain! Web 3.0!
+                {!currentAccount ? (
+                    <button type="button" onClick={connectWallet} className='text-white bg-blue-500 px-4 py-3 rounded-full'>
+                        Connect Wallet
+                    </button>
+                ):(
+                <div className='text-white bg-blue-500 px-4 py-3 rounded-full cursor-pointer'>
+                    Wallet connected successfully!
+                </div>
+            )}
             </div>
             <div className='absolute flex-col top-0 right-0 px-10 py-10 mx-10 my-10'>
                 <div>Form Heading</div>
