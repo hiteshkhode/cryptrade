@@ -7,7 +7,7 @@ import { useState, useContext } from 'react';
 
 import { TransactionContext } from '../context/TransactionContext';
 
-const Input = ( {placeholder, name, type, value, handlechange} ) => {
+const Input = ( {placeholder, name, type, value, handleChange} ) => {
     return(<div>
         <input
             placeholder={placeholder}
@@ -15,18 +15,25 @@ const Input = ( {placeholder, name, type, value, handlechange} ) => {
             name = {name}
             step = "0.0001"
             value = {value}
-            onChange = {(e) => handlechange(e, name)}
+            onChange = {(e) => handleChange(e, name)}
             className = "bg-transparent px-4 py-2 rounded-lg text-gray-700 focus:outline-none focus:shadow-outline"
     />
     </div>)
 }
 
 const Welcome = () => {
-    const {marks, connectWallet, currentAccount} = useContext(TransactionContext);
+    const {marks, connectWallet, currentAccount, formData, sendTransaction, handleChange} = useContext(TransactionContext);
 
     console.log(marks);
-    const handlesubmit = () => {
+    const handlesubmit = (e) => {
+        const { addressTo, amount, keyword, message } = formData;
+        e.preventDefault();
 
+        if(!addressTo || !amount || !keyword || !message){
+            alert("Please fill all the fields");
+        }else{
+            sendTransaction();
+        }
     }
     return(
         <div className='flex relative bg-gradient-to-r from-red-400 via-gray-300 to-blue-500 h-100'>
@@ -44,10 +51,10 @@ const Welcome = () => {
             </div>
             <div className='absolute flex-col top-0 right-0 px-10 py-10 mx-10 my-10'>
                 <div>Form Heading</div>
-                <Input placeholder="Address to" name ="Address to" type="text" />
-                <Input placeholder="Amount (ETH)" name ="amount" type="number" />
-                <Input placeholder="Keyword (GIF)" name ="keyword" type="text" />
-                <Input placeholder="Enter message" name ="message" type="text" />
+                <Input placeholder="address to" name ="addressTo" type="text" handleChange={handleChange} />
+                <Input placeholder="Amount (ETH)" name ="amount" type="number" handleChange={handleChange} />
+                <Input placeholder="Keyword (GIF)" name ="keyword" type="text" handleChange={handleChange} />
+                <Input placeholder="Enter message" name ="message" type="text" handleChange={handleChange} />
                 <div className='bg-white-500 my-2 w-[10px] h-[1px]'></div>
                 {false ? (
                     <Loader />
