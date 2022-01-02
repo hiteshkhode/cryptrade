@@ -1,8 +1,12 @@
-const Transactions = () => {
+const Transactions = ({sender, receiver, amount, message}) => {
     return(
-        <h1>
-            Transactions
-        </h1>
+        <div className="flex">
+            <div className="flex-col">
+                <div className="font-bold">{sender}</div>
+                <div className="text-gray-600">{receiver}</div>
+                <div className="text-gray-500">{amount}</div>
+            </div>
+        </div>
     );
 }
 

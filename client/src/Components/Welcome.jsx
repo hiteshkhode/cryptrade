@@ -16,13 +16,13 @@ const Input = ( {placeholder, name, type, value, handleChange} ) => {
             step = "0.0001"
             value = {value}
             onChange = {(e) => handleChange(e, name)}
-            className = "bg-transparent px-4 py-2 rounded-lg text-gray-700 focus:outline-none focus:shadow-outline"
+            className = "bg-transparent px-4 py-2 rounded-lg text-gray-700 focus:outline-none focus:shadow-outline text-white"
     />
     </div>)
 }
 
 const Welcome = () => {
-    const {connectWallet, currentAccount, formData, sendTransaction, handleChange} = useContext(TransactionContext);
+    const {connectWallet, currentAccount, formData, sendTransaction, handleChange, getAllTransactions} = useContext(TransactionContext);
 
     const handlesubmit = (e) => {
         const { addressTo, amount, keyword, message } = formData;
@@ -35,21 +35,21 @@ const Welcome = () => {
         }
     }
     return(
-        <div className='flex relative bg-gradient-to-r from-red-400 via-gray-300 to-blue-500 h-100'>
-            <div className='font-bold w-100 h-20 px-20 py-20 mx-20 my-20'>
-                Solidity! Blockchain! Web 3.0!
+        <div className='flex relative bg-gradient-to-r from-red-200 to-red-600 h-[700px]'>
+            <div className='font-bold w-100 h-20 px-20 py-20 mx-20 my-20 text-center'>
+                Solidity! Blockchain! Web 3.0! <br />
                 {!currentAccount ? (
                     <button type="button" onClick={connectWallet} className='text-white bg-blue-500 px-4 py-3 rounded-full'>
                         Connect Wallet
                     </button>
                 ):(
-                <div className='text-white bg-blue-500 px-4 py-3 rounded-full cursor-pointer'>
-                    Wallet connected successfully!
+                <div className='text-white bg-blue-500 px-4 py-3 rounded-full cursor-pointer text-center' onClick={getAllTransactions}>
+                    Get all transactions.
                 </div>
             )}
             </div>
             <div className='absolute flex-col top-0 right-0 px-10 py-10 mx-10 my-10'>
-                <div>Form Heading</div>
+                <div className='font-bold text-beige'>Ethereum Postman</div>
                 <Input placeholder="address to" name ="addressTo" type="text" handleChange={handleChange} />
                 <Input placeholder="Amount (ETH)" name ="amount" type="number" handleChange={handleChange} />
                 <Input placeholder="Keyword (GIF)" name ="keyword" type="text" handleChange={handleChange} />

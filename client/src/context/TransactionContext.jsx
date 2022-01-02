@@ -14,6 +14,20 @@ const getEthereumContract = () => {
     return transactionContract;
 }
 
+const getAllTransactions = async (transactionContract) => {
+    try {
+        if(!ethereum) return alert("Please connect to MetaMask");
+        const transactionContract = getEthereumContract();
+        // const availableTransactions = transactionContract.getAllTransactions();
+        // console.log(availableTransactions);
+        transactionContract.getAllTransactions().then(console.log);
+
+    }catch(err){
+        console.log(err);
+    }
+}
+
+
 export const TransactionProvider = ({ children }) => {
     const [currentAccount, setCurrentAccount] = useState("");
     const [formData, setFormdata] = useState({ addressTo: "", amount: "", keyword: "", message: "" });
@@ -77,7 +91,7 @@ export const TransactionProvider = ({ children }) => {
     }, []);
 
     return (
-        <TransactionContext.Provider value={{connectWallet, currentAccount, formData, setFormdata, sendTransaction, handleChange}}>
+        <TransactionContext.Provider value={{connectWallet, currentAccount, formData, setFormdata, sendTransaction, handleChange, getAllTransactions}}>
             {children}
         </TransactionContext.Provider>
     )
