@@ -1,13 +1,16 @@
-import logo from '../images/logo.png';
+import logo from '../images/ethereum.png';
 
 
 const Navbar = () => {
     return(
-        <div className='w-full flex relative bg-gradient-to-l from-gray-700 via-gray-900 to-black'>
+        <div className='w-full items-center flex relative bg-gradient-to-l from-gray-700 via-gray-900 to-black'>
             <div className='mx-3 my-3'>
-                <img src={logo} alt="" />
+                <img className='w-20' src={logo} alt="" />
             </div>
-            <div className='flex absolute right-0 bottom-0 my-5'>
+            <div className='ethereum text-white text-7xl ml-5'>
+                Postman
+            </div>
+            <div className='flex absolute right-0 bottom-0 my-5 items-center'>
                 <div className='mx-3 cursor-pointer text-white'>Market</div>
                 <div className='mx-3 cursor-pointer text-white'>Exchange</div>
                 <div className='mx-3 cursor-pointer text-white'>Tutorial</div>

@@ -8,7 +8,7 @@ function App() {
         <Navbar />
       </div>
       <Welcome />
-      <Transactions sender="qewr" receiver="asdf" amount="9" message="test" />
+      <Footer />
     </div>
   );
 }

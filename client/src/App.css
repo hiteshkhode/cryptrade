@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 .App {
   text-align: center;
 }
@@ -37,6 +41,9 @@
   }
 }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+.transactionform{
+  background-color: rgb(255, 255, 249);
+  color: rgb(4, 6, 94);
+  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+}
+
