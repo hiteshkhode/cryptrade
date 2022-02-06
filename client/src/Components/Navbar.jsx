@@ -1,4 +1,4 @@
-import logo from '../images/ethereum.png';
+import logo from '../images/ethereum-classic.png';
 
 
 const Navbar = () => {
